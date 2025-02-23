@@ -1,23 +1,36 @@
 # LightHub
 A python based youtube clone with admin panel
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML
 
-LightHub\*\*LightHub\*\* is a Python-based YouTube clone built using Flask. It allows users to upload, manage, and view videos, with an intuitive and modern interface. The platform also includes an \*\*Admin Panel\*\* for managing uploaded content. It supports video uploads, video playback, and user management functionality.This project is built with Flask, SQLite, and a custom backend for user authentication and video handling.
+
+LightHub **LightHub\*\* is a Python-based YouTube clone built using Flask. It allows users to upload, manage, and view videos, with an intuitive and modern interface. The platform also includes an \*\*Admin Panel\*\* for managing uploaded content. It supports video uploads, video playback, and user management functionality.This project is built with Flask, SQLite, and a custom backend for user authentication and video handling.
 
 Features- \*\*User Authentication\*\*: Users can sign up, log in, and log out.- \*\*Video Upload\*\*: Logged-in users can upload videos.- \*\*Manage Videos\*\*: Users can manage their uploaded videos through the interface.- \*\*Video Playback\*\*: Users can watch videos uploaded by others in a player interface.- \*\*Admin Panel\*\*: Admins can manage all uploaded videos, including deletion.---Requirements- Python 3.7 or higher- Flask- SQLite (used as the database for simplicity)- HTML, CSS, and JavaScript for frontend---Installation1. \*\*Clone the repository:\*\* \`\`\`bash git clone https://github.com/your-username/light-hub.git
 
 1.  pip install -r requirements.txt
     
-2.  **Set up the database:**SQLite is used for the database. If necessary, you can set up the database with a script like create\_db.py or follow your preferred SQLite setup method.
+2.  **Set up the database:** SQLite is used for the database. If necessary, you can set up the database with a script like create\_db.py or follow your preferred SQLite setup method.
     
 3.  bashKopiërenBewerkenpython app.pyThe app should now be running on http://127.0.0.1:5000.
     
 
 Folder Structure
 ----------------
-
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   phpKopiërenBewerkenlight-hub/  │  ├── static/                    # Contains static files such as images, videos, and CSS  │   ├── uploads/               # Directory where uploaded videos are stored  │   └── favicon.ico            # Application icon  │  ├── templates/                  # HTML templates for rendering content  │   ├── video.html             # Template for individual video pages  │   └── engine.html            # Information about the LightHub Engine  │  ├── app.py                      # Main Flask application file  ├── requirements.txt            # List of required Python packages  └── create_db.py                # (Optional) A script to create the SQLite database   `
+```ruby
+light-hub/
+│
+├── static/                    # Contains static files such as images, videos, and CSS
+│   ├── uploads/               # Directory where uploaded videos are stored
+│   └── favicon.ico            # Application icon
+│
+├── templates/                  # HTML templates for rendering content
+│   ├── video.html             # Template for individual video pages
+│   └── engine.html            # Information about the LightHub Engine
+│
+├── app.py                      # Main Flask application file
+├── requirements.txt            # List of required Python packages
+└── create_db.py                # (Optional) A script to create the SQLite database
+```
 
 How to Use
 ----------
