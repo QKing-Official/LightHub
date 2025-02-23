@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Manage Your Videos</title>
+    <style>
+        /* Dark theme variables */
+        :root {
+            --primary-bg: #0f0f0f;
+            --secondary-bg: #272727;
+            --hover-bg: #3f3f3f;
+            --primary-text: #ffffff;
+            --secondary-text: #aaaaaa;
+            --accent-color: #ff0000;
+            --border-color: #383838;
+            --button-bg: #ff5555;
+            --button-hover-bg: #ff4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--primary-text);
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--secondary-bg);
+            color: var(--primary-text);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar a {
+            margin: 0 20px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            margin-top: 0;
+        }
+
+        .content {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background-color: var(--secondary-bg);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button[type="submit"] {
+            padding: 12px;
+            background-color: var(--button-bg);
+            color: var(--primary-text);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.2s ease;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover {
+            background-color: var(--button-hover-bg);
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="{{ url_for('index') }}">Back to Home</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <h1>Manage Your Videos</h1>
+
+    <div class="content">
+        {% if videos %}
+            <ul>
+                {% for video in videos %}
+                    <li>
+                        <p>{{ video[2] }} - <a href="{{ url_for('video', video_id=video[0]) }}">View Video</a></p>
+                        <form action="{{ url_for('delete_video', video_id=video[0]) }}" method="POST">
+                            <button type="submit">Delete Video</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>You have not uploaded any videos yet.</p>
+        {% endif %}
+    </div>
+
+    <div class="footer">
+        <a href="{{ url_for('index') }}">Back to Home</a> | 
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+</body>
+</html>

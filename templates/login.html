@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>LightHub - Login</title>
+    <style>
+        /* Dark theme variables */
+        :root {
+            --primary-bg: #0f0f0f;
+            --secondary-bg: #272727;
+            --hover-bg: #3f3f3f;
+            --primary-text: #ffffff;
+            --secondary-text: #aaaaaa;
+            --accent-color: #ff0000;
+            --border-color: #383838;
+            --button-bg: #ff5555;
+            --button-hover-bg: #ff4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--primary-text);
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: var(--secondary-bg);
+            padding: 30px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            font-size: 16px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            background-color: var(--primary-bg);
+            border: 1px solid var(--border-color);
+            color: var(--primary-text);
+            border-radius: 8px;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: var(--accent-color);
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--button-bg);
+            color: var(--primary-text);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.2s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: var(--button-hover-bg);
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 14px;
+            color: var(--secondary-text);
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Login</h1>
+        <form action="{{ url_for('login') }}" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required><br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required><br>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign up here</a></p>
+    </div>
+</body>
+</html>

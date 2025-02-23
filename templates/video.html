@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>LightHub - Video Player - {{ title }}</title>
+    <style>
+        /* Dark theme variables */
+        :root {
+            --primary-bg: #0f0f0f;
+            --secondary-bg: #272727;
+            --hover-bg: #3f3f3f;
+            --primary-text: #ffffff;
+            --secondary-text: #aaaaaa;
+            --accent-color: #ff0000;
+            --border-color: #383838;
+            --button-hover-bg: #555555;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--primary-text);
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.5;
+            padding-top: 56px;
+        }
+
+        .header {
+            background-color: var(--primary-bg);
+            padding: 0 16px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-text);
+        }
+
+        .header .auth-links {
+            margin-left: auto;
+        }
+
+        .header .auth-links a {
+            color: var(--primary-text);
+            padding: 8px 16px;
+            background-color: var(--secondary-bg);
+            border-radius: 18px;
+            margin-left: 10px;
+            text-decoration: none;
+        }
+
+        .header .auth-links a:hover {
+            background-color: var(--hover-bg);
+        }
+
+        .main-content {
+            padding: 24px;
+            margin-top: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            margin-top: 24px;
+        }
+
+        .video-container video {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .video-info {
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .video-title {
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        .uploader {
+            font-size: 16px;
+            color: var(--secondary-text);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Video Upload</div>
+        <div class="auth-links">
+            {% if 'username' in session %}
+                <a href="{{ url_for('logout') }}">Logout</a>
+                <a href="{{ url_for('upload') }}">Upload Video</a>
+                <a href="{{ url_for('manage') }}">Manage Videos</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('signup') }}">Sign Up</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="video-container">
+            <video controls>
+                <source src="{{ url_for('static', filename=video_path) }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-info">
+                <div class="video-title">{{ title }}</div>
+                <div class="uploader">Uploaded by: {{ username }}</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

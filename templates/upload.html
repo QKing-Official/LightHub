@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Lighthub - Upload Video</title>
+    <style>
+        /* Dark theme variables */
+        :root {
+            --primary-bg: #0f0f0f;
+            --secondary-bg: #272727;
+            --hover-bg: #3f3f3f;
+            --primary-text: #ffffff;
+            --secondary-text: #aaaaaa;
+            --accent-color: #ff0000;
+            --border-color: #383838;
+            --button-bg: #ff5555;
+            --button-hover-bg: #ff4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--primary-text);
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.5;
+            padding-top: 56px;
+        }
+
+        .header {
+            background-color: var(--primary-bg);
+            padding: 0 16px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-text);
+        }
+
+        .header .auth-links {
+            margin-left: auto;
+        }
+
+        .header .auth-links a {
+            color: var(--primary-text);
+            padding: 8px 16px;
+            background-color: var(--secondary-bg);
+            border-radius: 18px;
+            margin-left: 10px;
+            text-decoration: none;
+        }
+
+        .header .auth-links a:hover {
+            background-color: var(--hover-bg);
+        }
+
+        .main-content {
+            padding: 24px;
+            margin-top: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form {
+            background-color: var(--secondary-bg);
+            padding: 24px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        form div {
+            margin-bottom: 16px;
+        }
+
+        form label {
+            font-size: 18px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        form input[type="text"],
+        form input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--primary-text);
+            font-size: 16px;
+        }
+
+        form button[type="submit"] {
+            padding: 12px;
+            background-color: var(--button-bg);
+            color: var(--primary-text);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+            transition: background-color 0.2s ease;
+        }
+
+        form button[type="submit"]:hover {
+            background-color: var(--button-hover-bg);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">LightHub</div>
+        <div class="auth-links">
+            {% if session['username'] %}
+                <a href="{{ url_for('logout') }}">Logout</a>
+                <a href="{{ url_for('upload') }}">Upload Video</a>
+                <a href="{{ url_for('manage') }}">Manage Videos</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('signup') }}">Sign Up</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h2>Upload Video</h2>
+
+        <form action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+            <div>
+                <label for="title">Enter Video Title:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div>
+                <label for="file">Choose Video File:</label>
+                <input type="file" id="file" name="file" accept="video/*" required>
+            </div>
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+
+</body>
+</html>
