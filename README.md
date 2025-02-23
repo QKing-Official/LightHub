@@ -27,10 +27,10 @@
 
 1. **Clone the repository:**
 ```bash
-   git clone https://github.com/your-username/light-hub.git
+   git clone https://github.com/QKing-Official/LightHub.git
 ```
 
-2.  pip install -r requirements.txt
+2.  pip install -r requirements.txt (or run the .bat/.sh file)
     
 2.  **Set up the database:** SQLite is used for the database. Run db.py too set up the database.
 ```bash
@@ -49,19 +49,27 @@ The app should now be running on http://127.0.0.1:5000.
 Folder Structure
 ----------------
 ```ruby
-light-hub/
-│
-├── static/                    # Contains static files such as images, videos, and CSS
-│   ├── uploads/               # Directory where uploaded videos are stored
-│   └── favicon.ico            # Application icon
-│
-├── templates/                  # HTML templates for rendering content
-│   ├── video.html             # Template for individual video pages
-│   └── engine.html            # Information about the LightHub Engine
-│
-├── app.py                      # Main Flask application file
-├── requirements.txt            # List of required Python packages
-└── create_db.py                # (Optional) A script to create the SQLite database
+LightHub
+├── app.py #The main application that handles the backend and connects it to the frontend.
+├── db.py #The file to set up the database.
+├── (database.db) #This file will appear after you ran db.py.
+├── start.bat #simplified requirements instalation and running for windows based systems.
+├── start.sh #simplified requirements installation and running for linux based systems.
+├── static #This folder contains the uploads of the users and the favicon.ico.
+│   ├── favicon.ico #The image on the webbrowser tab.
+│   └── uploads #The folder with all the uploads of the users.
+│       └── 1 #The first userID. The server makes more when needed.
+│           └── test_video.mp4 #The default test video.
+└── templates #All the pages of the site
+    ├── admin.html #(password protected) The admin panel where admins can delete videos. Only accesible from admin account.
+    ├── engine.html #The page where information about the video engine is displayed and you get redirected to when the video url is incorrect.
+    ├── index.html #The landing page with videos listed.
+    ├── login.html #The page where you can login.
+    ├── manage.html #The page where video owners can delete their videos.
+    ├── signup.html #The page where you can signup.
+    ├── styles.css #The styles for the website. (I think its not used anymore, but I'll keep it here in case it's needed.
+    ├── upload.html #The page where users can upload videos. Only logged in users can upload videos.
+    └── video.html #The engine that renders videos.
 ```
 
 ---
@@ -94,6 +102,8 @@ Admin Panel
 -----------
 
 *   **Accessing the Admin Panel:**
+ 
+    *  To acces the Admin Panel, go to http://127.0.0.1:5000/admin. (You need to be logged in as Admin, <ins>admin</ins> is default username with <ins>adminpassword</ins> as password).
     
     *   The Admin Panel is available for admins to manage all content.
         
